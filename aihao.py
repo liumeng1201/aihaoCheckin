@@ -1,11 +1,14 @@
 from urllib import request, parse
 
 cookie = ""
+push_key = ""
 
 if(cookie == ""):
-   cookie = input("cookie：")
+   cookie = input("cookie:")
+   push_key = input("push:")
 
 url = 'https://www.aihao.cc/plugin.php?id=daka'
+push = 'https://sc.ftqq.com/' + push_key + '.send?text=aihao_checkin_error'
 
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -29,6 +32,7 @@ response = request.urlopen(req)
 if response.status == 200:
     print("上午打卡成功")
 else:
+    request.urlopen(push)
     print("上午打卡失败")
 
 # --------
@@ -45,6 +49,7 @@ response = request.urlopen(req)
 if response.status == 200:
     print("中午打卡成功")
 else:
+    request.urlopen(push)
     print("中午打卡失败")
 
 # --------
@@ -61,6 +66,7 @@ response = request.urlopen(req)
 if response.status == 200:
     print("下午打卡成功")
 else:
+    request.urlopen(push)
     print("下午打卡失败")
 
 # --------
